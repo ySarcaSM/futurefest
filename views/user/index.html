@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot - BioEnergy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .logo {
+      width: 180px;
+      border-radius: 12px;
+    }
+    .chatbot-card {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .chatbot-header {
+      background-color: #198754;
+      color: #fff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-body {
+      padding: 20px;
+      background-color: #f1f1f1;
+    }
+    .btn-chatbot {
+      margin: 10px;
+      width: 200px;
+    }
+    .input-bot {
+      background-color: #198754;
+      border: none;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .input-bot::placeholder {
+      color: #fff;
+      opacity: 1;
+    }
+    .card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 20px rgba(25, 135, 84, 0.3);
+    transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/img/logo.svg" alt="Logo BioEnergy" class="logo me-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user">USER</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/#chatbot">CHATBOT</a></li>
+        <li class="nav-item"><a class="nav-link" href="/produtos">PRODUTOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/servicos">SERVIÇOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/manutencoes">MANUTENÇÕES</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/carrinho">
+            <i class="bi bi-cart-fill fs-4"></i> 
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4 me-1"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><h6 class="dropdown-header">Informações Pessoais</h6></li>
+            <li><a class="dropdown-item" href="#">Usuário: <span id="nome-usuario">Carregando...</span></a></li>
+            <li><a class="dropdown-item" href="#">Senha: ********</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/mudar-usuario">Mudar Usuário</a></li>
+            <li><a class="dropdown-item" href="/mudar-senha">Mudar Senha</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="realizarLogout(event)">Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5" id="chatbot">
+  <div class="chatbot-card">
+    <div class="chatbot-header">
+      <h5 class="mb-0">Chatbot BioEnergy</h5>
+      <span class="badge bg-light text-success">Online</span>
+    </div>
+    <div class="chatbot-body p-4" style="background-color: #eef3ef;">
+  <div id="chat-mensagens" class="mb-4" style="max-height: 350px; overflow-y: auto;"></div>
+
+  <div class="input-group mb-5">
+    <input type="text" id="mensagem" class="form-control input-bot fs-5" placeholder="Digite sua mensagem...">
+    <button id="enviar" class="btn btn-success text-white fw-bold w-100 fs-5">Enviar</button>
+  </div>
+
+  <div class="text-center mt-4">
+    <h2 class="mb-5 text-success fw-bold">Navegue por seção</h2>
+    <div class="container">
+      <div class="row justify-content-center g-4">
+
+        <div class="col-12 col-md-4">
+          <a href="/produtos" class="text-decoration-none text-dark">
+            <div class="card shadow-lg border-0 rounded-4 h-100" style="transition: transform 0.3s, box-shadow 0.3s;">
+              <img src="/img/produtos/BioEnergyCube.jpg" class="card-img-top rounded-top-4" style="height: 220px; object-fit: cover;" alt="Produtos">
+              <div class="card-body">
+                <h4 class="card-title text-success fw-bold">Produtos</h4>
+                <p class="card-text fs-6">Conheça nossa linha de produtos sustentáveis e tecnologias em energia renovável.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <a href="/servicos" class="text-decoration-none text-dark">
+            <div class="card shadow-lg border-0 rounded-4 h-100" style="transition: transform 0.3s, box-shadow 0.3s;">
+              <img src="/img/servicos.png" class="card-img-top rounded-top-4" style="height: 220px; object-fit: cover;" alt="Serviços">
+              <div class="card-body">
+                <h4 class="card-title text-success fw-bold">Serviços</h4>
+                <p class="card-text fs-6">Oferecemos consultoria e instalação de sistemas de energia limpa adaptados às suas necessidades.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <a href="/manutencoes" class="text-decoration-none text-dark">
+            <div class="card shadow-lg border-0 rounded-4 h-100" style="transition: transform 0.3s, box-shadow 0.3s;">
+              <img src="/img/manutencoes.jpg" class="card-img-top rounded-top-4" style="height: 220px; object-fit: cover;" alt="Manutenções">
+              <div class="card-body">
+                <h4 class="card-title text-success fw-bold">Manutenções</h4>
+                <p class="card-text fs-6">Garantimos o desempenho máximo dos seus sistemas com manutenções preventivas e corretivas.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  fetch('/dados-usuario')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('nome-usuario').textContent = data.usuario;
+    });
+  let usuario = "visitante";
+const input = document.getElementById("mensagem");
+const enviar = document.getElementById("enviar");
+const chatMensagens = document.getElementById("chat-mensagens");
+
+function formatarMarkdown(texto) {
+  if (!texto) return "";
+
+  let html = texto
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") 
+    .replace(/\*(.*?)\*/g, "<em>$1</em>") 
+    .replace(/__(.*?)__/g, "<u>$1</u>") 
+    .replace(/\n/g, "<br>"); 
+
+  return html;
+}
+
+function adicionarMensagem(texto, tipo) {
+  const msg = document.createElement("div");
+  msg.className = `p-2 mb-2 rounded ${
+    tipo === "user"
+      ? "bg-success text-white text-end"
+      : "bg-light text-start"
+  }`;
+
+  if (tipo === "assistant") {
+    msg.innerHTML = formatarMarkdown(texto);
+  } else {
+    msg.textContent = texto;
+  }
+
+  chatMensagens.appendChild(msg);
+  chatMensagens.scrollTop = chatMensagens.scrollHeight;
+}
+
+async function enviarMensagem() {
+  const texto = input.value.trim();
+  if (!texto || !usuario) return;
+
+  adicionarMensagem(texto, "user");
+  input.value = "";
+
+  try {
+    const res = await fetch("/chatbot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ usuario, text: texto })
+    });
+    const data = await res.json();
+    adicionarMensagem(data.reply, "assistant");
+  } catch (err) {
+    adicionarMensagem("Erro ao se comunicar com o assistente.", "assistant");
+  }
+}
+function realizarLogout(event) {
+   
+        event.preventDefault(); 
+    
+        sessionStorage.removeItem('usuarioLogado');
+    
+        window.location.href = '/sair'; 
+}
+
+enviar.addEventListener("click", enviarMensagem);
+
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") enviarMensagem();
+});
+document.addEventListener("DOMContentLoaded", async () => {
+  const linkManutencoes = document.querySelector('a[href="/manutencoes"]');
+  if (!linkManutencoes) return;
+
+  const card = linkManutencoes.querySelector(".card");
+  card.style.position = "relative";
+
+  try {
+    const res = await fetch("/tem-produto");
+    const data = await res.json();
+    const temProduto = data.temProduto;
+
+    if (!temProduto) {
+      const overlay = document.createElement("div");
+      overlay.classList.add("bloqueio-manutencao");
+      overlay.innerHTML = `
+        <div class="text-center">
+          <i class="bi bi-lock-fill text-warning fs-1"></i>
+          <p class="mt-2 fw-bold text-dark">Acesso restrito</p>
+        </div>
+      `;
+      Object.assign(overlay.style, {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        background: "rgba(255, 255, 255, 0.7)",
+        borderRadius: "15px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "10",
+        cursor: "not-allowed",
+      });
+
+      card.style.opacity = "0.7";
+      card.style.filter = "grayscale(40%)";
+      card.appendChild(overlay);
+
+      linkManutencoes.style.pointerEvents = "none";
+
+      overlay.addEventListener("click", () => {
+        alert("⚠️ Você precisa possuir um produto comprado para acessar as manutenções.");
+      });
+    }
+  } catch (err) {
+    console.error("Erro ao verificar produtos:", err);
+  }
+});
+
+
+</script>
+</body>
+</html>

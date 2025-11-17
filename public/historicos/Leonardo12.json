@@ -1,0 +1,50 @@
+[
+  {
+    "role": "user",
+    "content": "oi"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Bem-vindo à BioEnergy. Em que posso te ajudar hoje? Podemos falar sobre nossos <a href=\"/produtos\">produtos</a>, <a href=\"/servicos\">serviços</a>, ou tirar dúvidas sobre energia renovável e biomassa."
+  },
+  {
+    "role": "user",
+    "content": "meu nome e leo"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá Leo, em que posso te ajudar hoje? Podemos falar sobre nossos <a href=\"/produtos\">produtos</a>, <a href=\"/servicos\">serviços</a>, ou tirar dúvidas sobre energia renovável e biomassa."
+  },
+  {
+    "role": "user",
+    "content": "qr produto"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá Leo, para te recomendar o produto ideal, preciso saber qual tipo de biomassa você pretende utilizar. As opções são:\n\n*   **Cana de açúcar, esterco e palha**\n*   **Madeira, cavacos e aparas**\n\nCom essa informação, posso te apresentar o equipamento mais adequado para suas necessidades."
+  },
+  {
+    "role": "user",
+    "content": "se vende quanto o cavaco"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá Leo, infelizmente não vendemos cavaco, mas para te recomendar o produto ideal, preciso saber qual tipo de biomassa você pretende utilizar. As opções são:\n\n*   **Cana de açúcar, esterco e palha**\n*   **Madeira, cavacos e aparas**\n\nCom essa informação, posso te apresentar o equipamento mais adequado para suas necessidades."
+  },
+  {
+    "role": "user",
+    "content": "qr pizza"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá Leo, desculpe, não entendi. Para te recomendar o produto ideal, preciso saber qual tipo de biomassa você pretende utilizar. As opções são:\n\n*   **Cana de açúcar, esterco e palha**\n*   **Madeira, cavacos e aparas**\n\nCom essa informação, posso te apresentar o equipamento mais adequado para suas necessidades."
+  },
+  {
+    "role": "user",
+    "content": "quanto está o Container"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá Leo, o BioEnergyContainer custa R$ 15.000. Ele é ideal para quem usa cana de açúcar, esterco ou palha como biomassa. Ele gera 78,75 Wh de energia por minuto, o que equivale a 5,25 Wh por litro processado, com um custo de R$ 0,05 por litro.\n\nSe você tiver alguma dúvida sobre ele ou outros produtos, é só perguntar!"
+  }
+]

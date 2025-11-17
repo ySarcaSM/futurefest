@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Página dos Produtos - BioEnergy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .logo {
+      width: 180px;
+      border-radius: 12px;
+    }
+    .section-title {
+      color: #198754;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .card-body {
+      flex: 1;
+    }
+    .card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 20px rgba(25, 135, 84, 0.3);
+    }
+    .card-img-top {
+      height: 220px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      width: 100%;
+    }
+    .page-title {
+      text-align: center;
+      color: #198754;
+      font-weight: 800;
+      margin: 50px 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/img/logo.svg" alt="Logo BioEnergy" class="logo me-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user">USER</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/#chatbot">CHATBOT</a></li>
+        <li class="nav-item"><a class="nav-link" href="/produtos">PRODUTOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/servicos">SERVIÇOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/manutencoes">MANUTENÇÕES</a></li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/carrinho">
+            <i class="bi bi-cart-fill fs-4"></i> 
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4 me-1"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><h6 class="dropdown-header">Informações Pessoais</h6></li>
+            <li><a class="dropdown-item" href="#">Usuário: <span id="nome-usuario">Carregando...</span></a></li>
+            <li><a class="dropdown-item" href="#">Senha: ********</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/mudar-usuario">Mudar Usuário</a></li>
+            <li><a class="dropdown-item" href="/mudar-senha">Mudar Senha</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="realizarLogout(event)">Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+
+  <h1 class="page-title">Página dos Produtos</h1>
+  <hr class="mb-5" style="border: 2px solid #198754; width: 120px; margin: 0 auto; border-radius: 5px;">
+
+  <h3 class="text-success fw-bold mb-4 text-center">Produtos para Cana, Esterco e Palha</h3>
+  <div class="row justify-content-center g-4 mb-5">
+
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img src="/img/produtos/BioEnergyCube.jpg" alt="BioEnergyCube">
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">BioEnergyCube</h5>
+          <p class="card-text">Fertilizante orgânico ideal para o cultivo de cana, melhorando o solo e aumentando a produtividade.</p>
+          <div class="stats">
+            <strong>Capacidade:</strong> 1.000 L<br>
+            <strong>Taxa:</strong> 0,7 L/min<br>
+            <strong>Tempo:</strong> 23h50min<br>
+            <strong>Energia total:</strong> 10 kWh<br>
+            <strong>Custo por ciclo:</strong> R$ 20,00<br>
+            <strong>Eficiência:</strong> 0,5 kWh/R$<br>
+            <strong>Preço:</strong> R$ 3.500,00
+          </div>
+          <form action="/adicionar-carrinho" method="POST">
+            <input type="hidden" name="produtoId" value="{{produto._id}}">
+            <input type="hidden" name="nome" value="BioEnergyCube">
+            <input type="hidden" name="preco" value="3500">
+            <input type="number" name="quantidade" value="1" min="1" class="form-control my-2">
+            <button type="submit" class="btn btn-success w-100 mt-3">Adicionar ao carrinho</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img src="/img/produtos/BioEnergyEcoDrive.jpg" alt="BioEnergyEcoDrive">
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">BioEnergyEcoDrive</h5>
+          <p class="card-text">Produto voltado para o aproveitamento da palha, com foco em compostagem e enriquecimento do solo.</p>
+          <div class="stats">
+            <strong>Capacidade:</strong> 5.000 L<br>
+            <strong>Taxa:</strong> 10 L/min<br>
+            <strong>Tempo:</strong> 8h20min<br>
+            <strong>Energia total:</strong> 26,25 kWh<br>
+            <strong>Custo por ciclo:</strong> R$ 250,00<br>
+            <strong>Eficiência:</strong> 0,105 kWh/R$<br>
+            <strong>Preço:</strong> R$ 8.500,00
+          </div>
+          <form action="/adicionar-carrinho" method="POST">
+            <input type="hidden" name="produtoId" value="{{produto._id}}">
+            <input type="hidden" name="nome" value="BioEnergyEcoDrive">
+            <input type="hidden" name="preco" value="8500">
+            <input type="number" name="quantidade" value="1" min="1" class="form-control my-2">
+            <button type="submit" class="btn btn-success w-100 mt-3">Adicionar ao carrinho</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img src="/img/produtos/BioEnergyContainer.png" alt="BioEnergyContainer">
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">BioEnergyContainer</h5>
+          <p class="card-text">Adubo orgânico à base de esterco processado, ideal para regeneração de áreas agrícolas.</p>
+          <div class="stats">
+            <strong>Capacidade:</strong> 8.000 L<br>
+            <strong>Taxa:</strong> 15 L/min<br>
+            <strong>Tempo:</strong> 8h53min<br>
+            <strong>Energia total:</strong> 42 kWh<br>
+            <strong>Custo por ciclo:</strong> R$ 400,00<br>
+            <strong>Eficiência:</strong> 0,105 kWh/R$<br>
+            <strong>Preço:</strong> R$ 15.000,00
+          </div>
+          <form action="/adicionar-carrinho" method="POST">
+            <input type="hidden" name="produtoId" value="{{produto._id}}">
+            <input type="hidden" name="nome" value="BioEnergyContainer">
+            <input type="hidden" name="preco" value="15000">
+            <input type="number" name="quantidade" value="1" min="1" class="form-control my-2">
+            <button type="submit" class="btn btn-success w-100 mt-3">Adicionar ao carrinho</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title mt-5">Produtos para Madeira, Cavacos e Aparas</h3>
+  <div class="row justify-content-center g-4 mb-5">
+
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img src="/img/produtos/BioEnergyWoodX.jpg" alt="BioEnergyWoodX">
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">BioEnergyWoodX</h5>
+          <p class="card-text">Combustível ecológico derivado de resíduos de madeira, com alta eficiência energética e baixo impacto ambiental.</p>
+          <div class="stats">
+            <strong>Capacidade:</strong> 500 L<br>
+            <strong>Taxa:</strong> 1,5 L/min<br>
+            <strong>Tempo:</strong> 5h33min<br>
+            <strong>Energia total:</strong> 1,67 kWh<br>
+            <strong>Custo por ciclo:</strong> R$ 10,00<br>
+            <strong>Eficiência:</strong> 0,167 kWh/R$<br>
+            <strong>Preço:</strong> R$ 2.500,00
+          </div>
+          <form action="/adicionar-carrinho" method="POST">
+            <input type="hidden" name="produtoId" value="{{produto._id}}">
+            <input type="hidden" name="nome" value="BioEnergyWoodX">
+            <input type="hidden" name="preco" value="2500">
+            <input type="number" name="quantidade" value="1" min="1" class="form-control my-2">
+            <button type="submit" class="btn btn-success w-100 mt-3">Adicionar ao carrinho</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img src="/img/produtos/BioEnergyWooderPro.jpg" alt="BioEnergyWooderPro">
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">BioEnergyWooderPro</h5>
+          <p class="card-text">Cavacos de madeira selecionados para uso industrial e geração de energia limpa.</p>
+          <div class="stats">
+            <strong>Capacidade:</strong> 2.000 L<br>
+            <strong>Taxa:</strong> 7 L/min<br>
+            <strong>Tempo:</strong> 4h46min<br>
+            <strong>Energia total:</strong> 4,58 kWh<br>
+            <strong>Custo por ciclo:</strong> R$ 150,00<br>
+            <strong>Eficiência:</strong> 0,0305 kWh/R$<br>
+            <strong>Preço:</strong> R$ 6.000,00
+          </div>
+          <form action="/adicionar-carrinho" method="POST">
+            <input type="hidden" name="produtoId" value="{{produto._id}}">
+            <input type="hidden" name="nome" value="BioEnergyWooderPro">
+            <input type="hidden" name="preco" value="6000">
+            <input type="number" name="quantidade" value="1" min="1" class="form-control my-2">
+            <button type="submit" class="btn btn-success w-100 mt-3">Adicionar ao carrinho</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<script>
+  fetch('/dados-usuario')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('nome-usuario').textContent = data.usuario;
+    });
+    function realizarLogout(event) {
+   
+        event.preventDefault(); 
+    
+        sessionStorage.removeItem('usuarioLogado');
+        sessionStorage.removeItem('logado'); 
+    
+        window.location.href = '/sair'; 
+}
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

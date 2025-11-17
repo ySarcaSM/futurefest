@@ -1,0 +1,18 @@
+[
+  {
+    "role": "user",
+    "content": "ola"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Bem-vindo à BioEnergy. Em que posso te ajudar hoje?"
+  },
+  {
+    "role": "user",
+    "content": "me recomende uma manutenção"
+  },
+  {
+    "role": "assistant",
+    "content": "Para agendar uma manutenção, por favor, acesse a nossa página de <a href=\"/manutencoes\">manutenções</a>. Lá você encontrará todas as informações necessárias e poderá solicitar o serviço."
+  }
+]

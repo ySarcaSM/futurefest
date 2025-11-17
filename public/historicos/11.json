@@ -1,0 +1,106 @@
+[
+  {
+    "role": "user",
+    "content": "ola"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Bem-vindo à BioEnergy. Em que posso ajudar você hoje?"
+  },
+  {
+    "role": "user",
+    "content": "Preciso de uma recomendação de máquina"
+  },
+  {
+    "role": "assistant",
+    "content": "Para recomendar a melhor máquina, preciso saber qual a área do seu terreno e qual tipo de biomassa você pretende utilizar. Com essas informações, posso te apresentar a opção mais adequada para suas necessidades."
+  },
+  {
+    "role": "user",
+    "content": "Tenho um terro de 200m² e utilizo bastante cana de açucar"
+  },
+  {
+    "role": "assistant",
+    "content": "Para sua área e tipo de biomassa, o BioEnergyCube é o mais indicado. Ele utiliza cana de açúcar, esterco e palha, ideal para o que você precisa.\n\n*   **Energia:** Produz aproximadamente 10 Wh por litro e 7 Wh por minuto.\n*   **Custo:** O custo para processar cada litro é de R$ 0,02.\n*   **Capacidade:** Tem capacidade para 1.000 litros de biomassa.\n\nCom essas características, o BioEnergyCube oferece uma solução eficiente e econômica para suas necessidades energéticas em um terreno de 200m², utilizando cana de açúcar."
+  },
+  {
+    "role": "user",
+    "content": "me recomende uma máquina"
+  },
+  {
+    "role": "assistant",
+    "content": "Para te recomendar a melhor máquina, preciso saber qual a área do seu terreno e qual tipo de biomassa você pretende utilizar. Com essas informações, posso te apresentar a opção mais adequada para suas necessidades."
+  },
+  {
+    "role": "user",
+    "content": "Tenho 200m² porém uso bastante cana"
+  },
+  {
+    "role": "assistant",
+    "content": "Considerando que você usa bastante cana, mesmo tendo um terreno de 200m², recomendo o BioEnergyEcoDrive.\n\n*   **Energia:** Gera 5,25 Wh por litro e 52,5 Wh por minuto.\n*   **Custo:** O custo para processar cada litro é de R$ 0,05.\n*   **Capacidade:** Possui capacidade para 5.000 litros de biomassa.\n\nApesar da sua área ser menor, o BioEnergyEcoDrive é mais adequado devido ao seu alto consumo de cana, proporcionando maior eficiência e aproveitamento da biomassa."
+  },
+  {
+    "role": "user",
+    "content": "ola"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Bem-vindo à BioEnergy. Em que posso ajudar você hoje?"
+  },
+  {
+    "role": "user",
+    "content": "recomendação de máquina"
+  },
+  {
+    "role": "assistant",
+    "content": "Para te recomendar a melhor máquina, preciso saber qual a área do seu terreno e qual tipo de biomassa você pretende utilizar. Com essas informações, posso te apresentar a opção mais adequada para suas necessidades."
+  },
+  {
+    "role": "user",
+    "content": "eu tenho um terro de 500m² porém uso bastante cana"
+  },
+  {
+    "role": "assistant",
+    "content": "Considerando que você usa bastante cana, mesmo tendo um terreno de 500m², recomendo o BioEnergyEcoDrive.\n\n*   **Energia:** Produz 5,25 Wh por litro e 52,5 Wh por minuto.\n*   **Custo:** O custo para processar cada litro é de R$ 0,05.\n*   **Capacidade:** Tem capacidade para 5.000 litros de biomassa.\n\nApesar da sua área ser menor, o BioEnergyEcoDrive é mais adequado devido ao seu alto consumo de cana, proporcionando maior eficiência e aproveitamento da biomassa."
+  },
+  {
+    "role": "user",
+    "content": "Aonde posso encontrar mais informações sobre os produtos?"
+  },
+  {
+    "role": "assistant",
+    "content": "Você pode encontrar informações detalhadas sobre nossos produtos e serviços no nosso site oficial. Lá, você terá acesso a todas as especificações técnicas, casos de uso e informações sobre como cada solução pode atender às suas necessidades. Além disso, nossa equipe de atendimento está sempre à disposição para esclarecer qualquer dúvida adicional."
+  },
+  {
+    "role": "user",
+    "content": "ola"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Bem-vindo à BioEnergy. Em que posso ajudar você hoje?"
+  },
+  {
+    "role": "user",
+    "content": "aonde posso encontrar informações sobre produtos"
+  },
+  {
+    "role": "assistant",
+    "content": "Você pode encontrar informações detalhadas sobre nossos produtos em /produtos. Lá, você terá acesso a todas as especificações técnicas e informações sobre como cada solução pode atender às suas necessidades. Além disso, nossa equipe de atendimento está sempre à disposição para esclarecer qualquer dúvida adicional."
+  },
+  {
+    "role": "user",
+    "content": "me diga onde fica as informações dos produtos"
+  },
+  {
+    "role": "assistant",
+    "content": "Você pode encontrar informações detalhadas sobre nossos produtos em /produtos. Lá, você terá acesso a todas as especificações técnicas e informações sobre como cada solução pode atender às suas necessidades. Além disso, nossa equipe de atendimento está sempre à disposição para esclarecer qualquer dúvida adicional."
+  },
+  {
+    "role": "user",
+    "content": "onde posso encontrar informações de produtos?"
+  },
+  {
+    "role": "assistant",
+    "content": "Você pode encontrar informações detalhadas sobre nossos produtos em <a href=\"/produtos\">PRODUTOS</a>. Lá, você terá acesso a todas as especificações técnicas e informações sobre como cada solução pode atender às suas necessidades. Além disso, nossa equipe de atendimento está sempre à disposição para esclarecer qualquer dúvida adicional."
+  }
+]

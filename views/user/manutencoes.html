@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manutenções - BioEnergy</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body { background-color: #f8f9fa; }
+    .card-img-top {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .btn-manutencao {
+      background-color: #198754;
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-manutencao:hover { background-color: #146c43; }
+    #dadosManutencao {
+      background-color: #e9f5ee;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      display: none;
+    }
+    .logo {
+      width: 180px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/img/logo.svg" alt="Logo BioEnergy" class="logo me-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user">USER</a></li>
+        <li class="nav-item"><a class="nav-link" href="/user/#chatbot">CHATBOT</a></li>
+        <li class="nav-item"><a class="nav-link" href="/produtos">PRODUTOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/servicos">SERVIÇOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/manutencoes">MANUTENÇÕES</a></li>
+   
+        <li class="nav-item">
+          <a class="nav-link" href="/carrinho">
+            <i class="bi bi-cart-fill fs-4"></i> 
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4 me-1"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><h6 class="dropdown-header">Informações Pessoais</h6></li>
+            <li><a class="dropdown-item" href="#">Usuário: <span id="nome-usuario">Carregando...</span></a></li>
+            <li><a class="dropdown-item" href="#">Senha: ********</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/mudar-usuario">Mudar Usuário</a></li>
+            <li><a class="dropdown-item" href="/mudar-senha">Mudar Senha</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="realizarLogout(event)">Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container py-5">
+  <h2 class="text-center text-success mb-4">Manutenções</h2>
+  <div id="produtos-container" class="row g-4 justify-content-center">
+   
+  </div>
+</div>
+
+<div class="modal fade" id="manutencaoModal" tabindex="-1" aria-labelledby="manutencaoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="manutencaoModalLabel">Solicitar Manutenção</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <label for="tipoManutencao" class="form-label">Selecione o tipo de manutenção:</label>
+        <select id="tipoManutencao" class="form-select mb-3">
+          <option value="">Selecione...</option>
+          <option value="Preventiva">Preventiva</option>
+          <option value="Corretiva">Corretiva</option>
+          <option value="Emergencial">Emergencial</option>
+        </select>
+
+        <div id="dadosManutencao">
+          <p><strong>Nome do usuário:</strong> <span id="usuarioSpan"></span></p>
+          <p><strong>Nome da máquina:</strong> <span id="maquinaSpan"></span></p>
+          <p><strong>Tipo de manutenção:</strong> <span id="manutencaoSpan"></span></p>
+          <p><strong>Custo /h:</strong> R$ <span id="custoHoraSpan"></span></p>
+          <p><strong>Custo total:</strong> R$ <span id="custoTotalSpan"></span></p>
+          <p><strong>Dias:</strong> <span id="diasSpan"></span></p>
+          <p><strong>Disponível:</strong> Sim</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="confirmarManutencao" class="btn btn-success">Confirmar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById("produtos-container");
+  const tipoManutencaoSelect = document.getElementById("tipoManutencao");
+  const dadosDiv = document.getElementById("dadosManutencao");
+  const usuarioSpan = document.getElementById("usuarioSpan");
+  const maquinaSpan = document.getElementById("maquinaSpan");
+  const manutencaoSpan = document.getElementById("manutencaoSpan");
+  const custoHoraSpan = document.getElementById("custoHoraSpan");
+  const custoTotalSpan = document.getElementById("custoTotalSpan");
+  const diasSpan = document.getElementById("diasSpan");
+
+  let produtoSelecionado = null;
+  let usuarioLogado = ""; 
+
+  const manutencoesInfo = {
+    "BioEnergyCube": {
+      "Preventiva": { custoHora: 50, dias: 2 },
+      "Corretiva": { custoHora: 70, dias: 3 },
+      "Emergencial": { custoHora: 100, dias: 1 }
+    },
+    "BioEnergyEcoDrive": {
+      "Preventiva": { custoHora: 60, dias: 2 },
+      "Corretiva": { custoHora: 80, dias: 3 },
+      "Emergencial": { custoHora: 120, dias: 1 }
+    },
+    "BioEnergyContainer": {
+      "Preventiva": { custoHora: 70, dias: 2 },
+      "Corretiva": { custoHora: 90, dias: 3 },
+      "Emergencial": { custoHora: 130, dias: 1 }
+    },
+    "BioEnergyWoodX": {
+      "Preventiva": { custoHora: 40, dias: 2 },
+      "Corretiva": { custoHora: 60, dias: 3 },
+      "Emergencial": { custoHora: 90, dias: 1 }
+    },
+    "BioEnergyWooderPro": {
+      "Preventiva": { custoHora: 55, dias: 2 },
+      "Corretiva": { custoHora: 75, dias: 3 },
+      "Emergencial": { custoHora: 110, dias: 1 }
+    }
+  };
+
+  function getImagemDoProduto(nome) {
+    switch (nome) {
+      case "BioEnergyCube": return "/img/produtos/BioEnergyCube.jpg";
+      case "BioEnergyEcoDrive": return "/img/produtos/BioEnergyEcoDrive.jpg";
+      case "BioEnergyContainer": return "/img/produtos/BioEnergyContainer.png";
+      case "BioEnergyWoodX": return "/img/produtos/BioEnergyWoodX.jpg";
+      case "BioEnergyWooderPro": return "/img/produtos/BioEnergyWooderPro.jpg";
+      default: return "/img/produtos/default.jpg";
+    }
+  }
+
+  function criarCardsComNumeracao(produtos) {
+    container.innerHTML = "";
+    const contagem = {};
+
+    produtos.forEach((produto, index) => {
+      const nomeBase = produto.nome;
+      if (!contagem[nomeBase]) contagem[nomeBase] = 1;
+      else contagem[nomeBase]++;
+
+      const nomeNumerado = `${nomeBase} ${contagem[nomeBase]}`;
+      produto.nomeNumerado = nomeNumerado;
+
+      const col = document.createElement("div");
+      col.className = "col-12 col-md-4 col-lg-3";
+
+      col.innerHTML = `
+        <div class="card shadow-sm h-100">
+          <div class="card-img-container" style="flex:1; display:flex; justify-content:center; align-items:center; padding:10px;">
+            <img src="${getImagemDoProduto(nomeBase)}" alt="${nomeNumerado}" style="max-width:100%; max-height:100%; height:auto; width:auto; object-fit:contain;">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-success">${nomeNumerado}</h5>
+            <button class="btn btn-manutencao mt-auto" data-bs-toggle="modal" data-bs-target="#manutencaoModal" data-index="${index}">
+              Manutenção
+            </button>
+          </div>
+        </div>
+      `;
+      container.appendChild(col);
+    });
+
+    document.querySelectorAll(".btn-manutencao").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const index = e.target.getAttribute("data-index");
+        produtoSelecionado = produtos[index];
+        tipoManutencaoSelect.value = "";
+        dadosDiv.style.display = "none";
+      });
+    });
+  }
+
+  async function carregarProdutosUsuario() {
+    try {
+      const resUsuario = await fetch('/dados-usuario');
+      const dataUsuario = await resUsuario.json();
+      usuarioLogado = dataUsuario.usuario || "Usuário";
+
+      const res = await fetch('/produtos-usuario');
+      const data = await res.json();
+
+      if (!data.produtos || data.produtos.length === 0) {
+        container.innerHTML = `<p class="text-center text-warning fs-5">Você ainda não possui produtos para manutenção.</p>`;
+        return;
+      }
+
+      criarCardsComNumeracao(data.produtos);
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = `<p class="text-center text-danger fs-5">Erro ao carregar produtos ou usuário.</p>`;
+    }
+  }
+
+  document.getElementById("confirmarManutencao").addEventListener("click", async () => {
+  const tipo = tipoManutencaoSelect.value;
+  if (!tipo) { alert("Selecione um tipo de manutenção."); return; }
+  if (!produtoSelecionado) { alert("Nenhum produto selecionado."); return; }
+
+  const info = manutencoesInfo[produtoSelecionado.nome][tipo];
+  const usuario = usuarioLogado;
+  const produto = produtoSelecionado.nomeNumerado;
+  const custoHora = info.custoHora;
+  const dias = info.dias;
+  const custoTotal = custoHora * dias * 8; 
+
+  usuarioSpan.textContent = usuario;
+  maquinaSpan.textContent = produto;
+  manutencaoSpan.textContent = tipo;
+  custoHoraSpan.textContent = custoHora.toFixed(2);
+  custoTotalSpan.textContent = custoTotal.toFixed(2);
+  diasSpan.textContent = dias;
+  dadosDiv.style.display = "block";
+
+  try {
+    const res = await fetch('/adicionar-manutencao', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario, produto, tipo, custoHora, custoTotal, dias })
+    });
+    const data = await res.json();
+    if (data.sucesso) {
+      alert('Manutenção registrada com sucesso!');
+    } else {
+      alert('Erro ao registrar manutenção.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Erro na conexão com o servidor.');
+  }
+});
+
+
+  document.addEventListener("DOMContentLoaded", carregarProdutosUsuario);
+
+    fetch('/dados-usuario')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('nome-usuario').textContent = data.usuario;
+    });
+
+    function realizarLogout(event) {
+   
+        event.preventDefault(); 
+    
+        sessionStorage.removeItem('usuarioLogado');
+        sessionStorage.removeItem('logado'); 
+    
+        window.location.href = '/sair'; 
+}
+</script>
+
+</body>
+</html>

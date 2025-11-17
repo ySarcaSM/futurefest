@@ -1,0 +1,42 @@
+[
+  {
+    "role": "user",
+    "content": "ola"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Bem-vindo(a) à BioEnergy. Em que posso te ajudar hoje? Podemos falar sobre nossos <a href=\"/produtos\">produtos</a>, <a href=\"/servicos\">serviços</a> ou tirar dúvidas sobre energia renovável e biomassa."
+  },
+  {
+    "role": "user",
+    "content": "serviçosg"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Atualmente, oferecemos os seguintes <a href=\"/servicos\">serviços</a>:\n\n*   **Consultoria:** Avaliamos suas necessidades e recomendamos a melhor solução em energia de biomassa.\n*   **Instalação:** Nossa equipe instala os equipamentos com segurança e eficiência.\n*   **Manutenção:** Oferecemos serviços de manutenção preventiva e corretiva para garantir o bom funcionamento dos seus equipamentos.\n*   **Capacitação:** Treinamos sua equipe para operar os equipamentos e gerenciar a produção de energia.\n*   **Sustentabilidade:** Ajudamos sua empresa a implementar práticas sustentáveis em toda a cadeia de produção de energia.\n\nQual desses serviços te interessa mais?"
+  },
+  {
+    "role": "user",
+    "content": "consultoria"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Nossa consultoria te ajudará a escolher a melhor solução em energia de biomassa para suas necessidades. Podemos agendar uma conversa para entender melhor sua demanda e apresentar as opções mais adequadas. Que tal?"
+  },
+  {
+    "role": "user",
+    "content": "Sim"
+  },
+  {
+    "role": "assistant",
+    "content": "Ótimo! Para agendar sua consultoria, preciso de algumas informações:\n\n1.  Qual o tipo de biomassa que você pretende utilizar (cana de açúcar, esterco, palha, madeira, etc.)?\n2.  Qual a área do local onde você pretende instalar o equipamento (em metros quadrados)?\n\nCom essas informações, posso direcionar sua solicitação para o consultor mais adequado."
+  },
+  {
+    "role": "user",
+    "content": "grupoA"
+  },
+  {
+    "role": "assistant",
+    "content": "Olá! Para o grupo A, que inclui cana de açúcar, esterco e palha, temos algumas opções de equipamentos:\n\n*   **BioEnergyCube:** Ideal para áreas menores, com capacidade de 1.000 litros. Ele gera aproximadamente 10 Wh de energia por litro e 7 Wh por minuto, com um custo de R$ 0,02 por litro processado.\n*   **BioEnergyEcoDrive:** Recomendado para áreas maiores, com capacidade de 5.000 litros. Ele gera 5,25 Wh de energia por litro e 52,5 Wh por minuto, com um custo de R$ 0,05 por litro processado.\n*   **BioEnergyContainer:** Para áreas ainda maiores, com capacidade de 8.000 litros. Ele também gera 5,25 Wh de energia por litro e 78,75 Wh por minuto, com um custo de R$ 0,05 por litro processado.\n\nQual equipamento se encaixa melhor na sua área e necessidade de produção de energia?"
+  }
+]

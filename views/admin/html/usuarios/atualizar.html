@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualizar Usuário</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<style>
+    .logo {
+      width: 180px;
+      border-radius: 12px;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/img/logo.svg" alt="Logo BioEnergy" class="logo me-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin">ADMIN</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/usuarios">USUARIOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/manutencoes">MANUTENÇÕES</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/servicos">SERVIÇOS</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/produtos">PRODUTOS</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4 me-1"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><h6 class="dropdown-header">Informações Pessoais</h6></li>
+            <li><a class="dropdown-item" href="#">Usuário: <span id="nome-usuario">Carregando...</span></a></li>
+            <li><a class="dropdown-item" href="#">Senha: ********</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/mudar-usuario">Mudar Usuário</a></li>
+            <li><a class="dropdown-item" href="/mudar-senha">Mudar Senha</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="realizarLogout(event)">Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h1 class="text-center mb-4">Atualizar Usuário</h1>
+
+            <div class="d-flex justify-content-center gap-3 mb-4">
+              <a href="/" class="btn btn-primary">Página Inicial</a>
+              <a href="/admin" class="btn btn-secondary">Página dos Administradores</a>
+              <a href="/admin/usuarios" class="btn btn-success">Lista de Usuários</a>
+            </div>
+
+            <form action="/admin/usuarios_atualizar" method="post" id="formAtualizar">
+              <input type="hidden" name="id" id="id">
+              <div class="mb-3">
+                <label for="usuario" class="form-label">Usuário:</label>
+                <input type="text" name="usuario" id="usuario" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="senha" class="form-label">Senha (criptografada):</label>
+                <input type="text" name="senha" id="senha" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo:</label>
+                <select name="tipo" id="tipo" class="form-select" required>
+                  <option value="comum">Comum</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      if (id) {
+        fetch(`/admin/usuario/${id}`)
+          .then(response => response.json())
+          .then(usuario => {
+            document.getElementById("id").value = usuario._id;
+            document.getElementById("usuario").value = usuario.usuario;
+            document.getElementById("senha").value = usuario.senha;
+            document.getElementById("tipo").value = usuario.tipo;
+          })
+          .catch(error => console.error('Erro ao carregar dados do usuário: ', error));
+      }
+    });
+        fetch('/dados-usuario')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('nome-usuario').textContent = data.usuario;
+    });
+  function realizarLogout(event) {
+   
+        event.preventDefault(); 
+    
+        sessionStorage.removeItem('usuarioLogado');
+    
+        window.location.href = '/sair'; 
+}
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
