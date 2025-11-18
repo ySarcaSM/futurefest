@@ -36,6 +36,7 @@ const collectionFeedback = 'feedbacks'
 const collectionProdutos = 'produtos'
 const collectionCarrinho = 'carrinho'
 const collectionCompras = 'compras';
+const collectionHistorico = "historico"
 
 //Rotas principais do código, para o usuário entrar na página, fazer login e registro e rotas de controle.
 app.get('/', (req,res)=>{
