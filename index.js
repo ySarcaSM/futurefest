@@ -432,27 +432,31 @@ app.get('/dados-usuario', (req, res) => {
 //Rota para fazer o chatbot que recomenda máquinas, serviços e manutenções funcionar
 
 app.post("/chatbot", protegerRota, async (req, res) => {
+
+  const cliente = new MongoClient(urlMongo)
+
   const { usuario, text } = req.body;
 
   if (!usuario || !text) {
     return res.status(400).json({ reply: "Usuário e mensagem são obrigatórios." });
   }
 
-  const pastaHistoricos = path.join(__dirname, "public", "historicos");
-  if (!fs.existsSync(pastaHistoricos)) {
-    fs.mkdirSync(pastaHistoricos, { recursive: true });
-  }
-
-  const caminhoHistorico = path.join(pastaHistoricos, `${usuario}.json`);
-  if (!fs.existsSync(caminhoHistorico)) {
-    fs.writeFileSync(caminhoHistorico, JSON.stringify([]));
-  }
-
   try {
-    const historico = JSON.parse(fs.readFileSync(caminhoHistorico, "utf8"));
-    historico.push({ role: "user", content: text });
+    await cliente.connect()
+    const db = cliente.db(nomeBanco)
+    const historicoCollection = db.collection(collectionHistorico)
+    // Buscar histórico do usuário
+    let historico = await historicoCollection.findOne({ usuario });
 
-    const conversa = historico
+    if (!historico) {
+      historico = { usuario, mensagens: [] };
+      await historicoCollection.insertOne(historico);
+    }
+
+    // Adicionar mensagem do usuário
+    historico.mensagens.push({ role: "user", content: text });
+
+    const conversa = historico.mensagens
       .map((msg) => `${msg.role === "user" ? "Usuário" : "Assistente"}: ${msg.content}`)
       .join("\n");
 
@@ -460,8 +464,14 @@ app.post("/chatbot", protegerRota, async (req, res) => {
     const result = await model.generateContent(prompt);
     const reply = result.response.text().trim();
 
-    historico.push({ role: "assistant", content: reply });
-    fs.writeFileSync(caminhoHistorico, JSON.stringify(historico, null, 2));
+    // Adicionar resposta do assistente
+    historico.mensagens.push({ role: "assistant", content: reply });
+
+    // Atualizar no MongoDB
+    await historicoCollection.updateOne(
+      { usuario },
+      { $set: { mensagens: historico.mensagens } }
+    );
 
     res.json({ reply });
   } catch (err) {
